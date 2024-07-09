@@ -1,5 +1,12 @@
 package mpu9250
 
+import "go.viam.com/rdk/resource"
+
+var (
+	mpuFamily = resource.NewModelFamily("rand", "mpu9250")
+	Model     = mpuFamily.WithModel("mpu9250")
+)
+
 // The I2C address
 const Address = 0x68
 

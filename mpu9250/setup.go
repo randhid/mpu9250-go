@@ -1,3 +1,5 @@
+//go:build !linux
+
 package mpu9250
 
 import (
@@ -8,10 +10,6 @@ import (
 	"go.viam.com/rdk/resource"
 )
 
-var (
-	mpuFamily = resource.NewModelFamily("rand", "mpu9250")
-	Model     = mpuFamily.WithModel("mpu9250")
-)
 
 func init() {
 	resource.RegisterComponent(movementsensor.API, Model, resource.Registration[movementsensor.MovementSensor, *resource.NoNativeConfig]{
@@ -25,6 +23,7 @@ func newMpu9250(ctx context.Context, deps resource.Dependencies, conf resource.C
 		Named:  conf.ResourceName().AsNamed(),
 		logger: logger,
 	}
+
 	return m, nil
 }
 
